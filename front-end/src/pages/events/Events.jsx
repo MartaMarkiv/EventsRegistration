@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import Header from "../../components/header/Header";
+import Event from "../../components/event/Event";
 import api from "../../api";
+import "./styles.scss";
 
 function Events() {
   const [eventsList, setEventsList] = useState([]);
@@ -22,15 +24,20 @@ function Events() {
     fetchData();
   }, [fetchData]);
 
-  return(<>
+  return(<section>
     <Header title="Events" />
-    <div>
+    <div className="events-list-wrapper">
       {
         error ? <div>Error</div>:
-        eventsList.map(item => <div key={item._id}>{item.title}</div>)
+        eventsList.map(item => <Event
+          key={item._id}
+          description={item.description}
+          title={item.title}
+          id={item._id}
+        />)
       }
     </div>
-  </>);
+  </section>);
 }
 
 export default Events;
