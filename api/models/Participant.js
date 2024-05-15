@@ -6,7 +6,8 @@ const eventSchema = Schema(
     fullName: { type: String, required: true },
     email: { type: String, required: true },
     event: { type: Schema.Types.ObjectId, ref: "Event", required: true },
-    source: { type: String, required: true }
+    source: { type: String, required: true },
+    birthDate: { type: String, required: true }
   },
   { timestamps: true }
 );

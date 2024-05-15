@@ -8,9 +8,9 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async(req, res) => {
-  const { eventId, fullName, email, source } = req.body;
+  const { eventId, fullName, email, source, birthDate } = req.body;
   
-  if(!eventId || !fullName || !email || !source) {
+  if(!eventId || !fullName || !email || !source || !birthDate) {
     return res.status(400).json({message: "Bad request"});
   }
 
@@ -18,7 +18,8 @@ router.post('/', async(req, res) => {
     eventId,
     fullName,
     email,
-    source 
+    source,
+    birthDate
   });
 
   return res.status(200).json({message: "You are successfully registered."});
