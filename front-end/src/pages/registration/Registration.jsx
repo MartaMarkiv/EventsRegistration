@@ -41,8 +41,7 @@ function Registration() {
 
   return(<section>
     <Header title="Event registration" />
-    <div>{eventId}</div>
-    <form onSubmit={submitForm}>
+    <form onSubmit={submitForm} className="registration-form">
       <label>
         Full name
         <input type="text" name="fullName" value={fullName} onChange={changeName} required />
@@ -55,7 +54,8 @@ function Registration() {
         Date of birth
         <input type="date" name="birthDate" value={birthDate} onChange={changeBirthDate} required />
       </label>
-      <div className="source-wrapper">
+      <span className="source-title">Whre did you hear about this event?</span>
+      <div className="source-options">
         <label>
           <input name="sourceGroup" type="radio" value="social" onChange={changeSource} required />
           Social media</label>
