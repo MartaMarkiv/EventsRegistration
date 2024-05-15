@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/header/Header";
 import "./styles.scss";
+import api from "../../api";
 
 function Registration() {
   const { eventId } = useParams();
@@ -10,6 +11,9 @@ function Registration() {
   const [email, setEmail] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [source, setSource] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
 
   const changeName = (event) => {
     setFullName(event.target.value);
@@ -25,6 +29,8 @@ function Registration() {
 
   const submitForm = (event) => {
     event.preventDefault();
+
+    setSubmitting(true);
     const data = {
       eventId,
       source,
@@ -32,16 +38,39 @@ function Registration() {
       birthDate,
       email
     };
-    console.log(data);
+    api.post("participant", data)
+      .then(resp => {
+        clearForm();
+        setSubmitMessage(resp["data"].message);
+      })
+      // eslint-disable-next-line no-unused-vars
+      .catch(err => {
+        setSubmitError(true);
+        setSubmitMessage("Error happened, please try again later.");
+      })
+      .finally(() => {
+        setSubmitting(false);
+        setTimeout(() => {
+          setSubmitMessage("");
+          setSubmitError(false);
+        }, 4000);
+      });
   };
 
   const changeSource = (event) => {
     setSource(event.target.value);
   };
 
+  const clearForm = () => {
+    setEmail("");
+    setFullName("");
+    setBirthDate("");
+    setSource("");
+  };
+
   return(<section>
     <Header title="Event registration" />
-    <form onSubmit={submitForm} className="registration-form">
+    <form onSubmit={submitForm} className="registration-form" autoComplete="off">
       <label>
         Full name
         <input type="text" name="fullName" value={fullName} onChange={changeName} required />
@@ -68,7 +97,12 @@ function Registration() {
           Found myself
         </label>
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={submitting}>Submit</button>
+      {
+        submitMessage && <div className={submitError ? "submit-result error" : "submit-result success"}>
+          {submitMessage}
+        </div>
+      }
     </form>
   </section>);
 }

@@ -8,14 +8,14 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async(req, res) => {
-  const { eventId, fullName, email, source, birthDate } = req.body;
+  const { eventId: event, fullName, email, source, birthDate } = req.body;
   
-  if(!eventId || !fullName || !email || !source || !birthDate) {
+  if(!event || !fullName || !email || !source || !birthDate) {
     return res.status(400).json({message: "Bad request"});
   }
 
   await ParticipantModel.create({
-    eventId,
+    event,
     fullName,
     email,
     source,
