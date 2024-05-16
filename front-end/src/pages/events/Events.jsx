@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Event from "../../components/event/Event";
-import api from "../../api";
+import api from "../../api/api";
 import "./styles.scss";
 
 function Events() {

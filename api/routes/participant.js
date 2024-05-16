@@ -3,7 +3,8 @@ const router = express.Router();
 const ParticipantModel = require("../models/Participant");
 
 router.get('/', async (req, res) => {
-  const eventsList = await ParticipantModel.findByQuery({});
+  const event = req.query.eventId;
+  const eventsList = await ParticipantModel.findByQuery({ event });
   return res.status(200).json({list: eventsList});
 });
 

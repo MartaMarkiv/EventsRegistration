@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/header/Header";
 import "./styles.scss";
-import api from "../../api";
+import api from "../../api/api";
 
 function Registration() {
   const { eventId } = useParams();
