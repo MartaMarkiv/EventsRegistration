@@ -8,7 +8,7 @@ function Event({title, description, id}) {
     <div>{description}</div>
     <div className="actions-wrapper">
       <Link className="link" to={`${REGISTRATION_ROUTE}/${id}`}>Register</Link>
-      <Link className="link" to={`${PARTICIPANTS_ROUTE}/${id}`} state={title}>
+      <Link className="link" to={`${PARTICIPANTS_ROUTE}/${id}`} state={{ title }} >
         View
       </Link>
     </div>

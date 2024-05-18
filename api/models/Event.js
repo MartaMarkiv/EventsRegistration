@@ -16,7 +16,12 @@ const EventModel = mongoose.model("Event", eventSchema);
 module.exports = {
   create: (data) => new EventModel(data).save(),
 
-  findByQuery: (query) => EventModel.find(query).lean(),
+  findByQuery: (query, skip) => EventModel.find(query)
+    .skip(skip)
+    .limit(5)
+    .lean(),
 
   findOneByQuery: (query) => EventModel.findOne(query).lean(),
+
+  findCountByQuery: (query) => EventModel.countDocuments(query),
 };

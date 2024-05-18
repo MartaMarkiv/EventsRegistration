@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const EventModel = require("../models/Event");
+const getEventsList = require("../controllers/eventController/getEventsList");
 
-router.get('/', async (req, res) => {
-  const eventsList = await EventModel.findByQuery({});
-  return res.status(200).json({list: eventsList});
-});
+router.get('/', getEventsList);
 
 router.post('/', async(req, res) => {
   const { description, title, organizer, eventDate } = req.body;

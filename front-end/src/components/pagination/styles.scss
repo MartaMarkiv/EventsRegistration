@@ -1,0 +1,39 @@
+@import "../../variables";
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  button {
+    background: none;
+    margin: 0;
+    padding: 5px;
+
+    &:disabled {
+      cursor: default;
+      color: grey;
+    }
+  }
+
+  .marker, button {
+    font-size: 16px;
+    font-weight: 500;
+    color: $link-hover-bg-color;
+    cursor: pointer;
+    margin: 0 4px;
+  }
+
+  .active-page {
+    color: $link-bg-color;
+  }
+}

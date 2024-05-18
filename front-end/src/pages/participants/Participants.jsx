@@ -5,12 +5,9 @@ import "./styles.scss";
 
 function Participants() {
   const participantsList = useLoaderData();
-  console.log(participantsList);
-  const { state } = useLocation();
-  const eventName = "";
-  console.log("TITLE: ", state);
+  const { state: { title } } = useLocation();
   return(<section>
-    <Header title={`"${eventName}" participants`} />
+    <Header title={`"${title}" participants`} />
     <div className="participants-wrapper">
       {
         participantsList?.map(item => <ParticipantItem

@@ -1,18 +1,25 @@
 import { useCallback, useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Event from "../../components/event/Event";
+import Pagination from "../../components/pagination/Pagination";
 import api from "../../api/api";
 import "./styles.scss";
 
 function Events() {
   const [eventsList, setEventsList] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
   const [error, setError] = useState(false);
 
+  const changeCurrentPage = (page) => setCurrentPage(page);
+
   const fetchData = useCallback(async () => {
-    await api.get("event")
+    console.log("currentPage before fetch: ", currentPage);
+    await api.get("event", { params: { page: currentPage } })
       .then(resp => {
-        const data = resp.data["list"];
-        setEventsList(data);
+        const { list, total } = resp.data;
+        setEventsList(list);
+        setTotalPages(total);
       })
       // eslint-disable-next-line no-unused-vars
       .catch(err => {
@@ -37,6 +44,7 @@ function Events() {
         />)
       }
     </div>
+    <Pagination current={currentPage} total={totalPages} changePage={changeCurrentPage}/>
   </section>);
 }
 
