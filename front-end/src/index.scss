@@ -45,3 +45,19 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  min-width: 300px;
+
+  &:focus {
+    border: 1px solid $border-color;
+    outline: none;
+  }
+}

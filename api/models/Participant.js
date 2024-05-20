@@ -17,7 +17,18 @@ const ParticipantModel = mongoose.model("Participant", eventSchema);
 module.exports = {
   create: (data) => new ParticipantModel(data).save(),
 
-  findByQuery: (query) => ParticipantModel.find(query).lean(),
+  findByQuery: (event, nameValue, emailValue) =>
+    ParticipantModel.find({
+      event,
+      fullName: {
+        $regex: nameValue,
+        $options: "i"
+      },
+      email: {
+        $regex: emailValue,
+        $options: "i"
+      }
+    }).lean(),
 
   findOneByQuery: (query) => ParticipantModel.findOne(query).lean(),
 };

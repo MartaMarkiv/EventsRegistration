@@ -1,12 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const ParticipantModel = require("../models/Participant");
+const getParticipantsList = require("../controllers/participantController/getParticipantsList");
 
-router.get('/', async (req, res) => {
-  const event = req.query.eventId;
-  const eventsList = await ParticipantModel.findByQuery({ event });
-  return res.status(200).json({list: eventsList});
-});
+router.get('/', getParticipantsList);
 
 router.post('/', async(req, res) => {
   const { eventId: event, fullName, email, source, birthDate } = req.body;

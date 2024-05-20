@@ -1,0 +1,27 @@
+@import "../../variables";
+
+.search-form {
+  margin: 20px 0;
+  padding-bottom: 15px;
+  border-bottom: 1px solid $border-color;
+
+  .inputs-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+
+    input {
+      margin-right: 10px;
+      min-width: 200px;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    button {
+      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+  }
+}
