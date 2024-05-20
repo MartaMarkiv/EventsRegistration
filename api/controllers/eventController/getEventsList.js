@@ -2,9 +2,12 @@ const EventModel = require("../../models/Event");
 
 module.exports = async(req, res) => {
   try {
-    const skip = req.query.page;
-    console.log("skip: ", skip);
-    const eventsList = await EventModel.findByQuery({}, skip*5); //10 items per page
+    const { page: skip, sort: {sortKey, sortValue} } = req.query;
+
+    let sortQuery = {};
+    sortQuery[sortKey] = Number(sortValue);
+    
+    const eventsList = await EventModel.findByQuery({}, sortQuery, skip*5); //10 items per page
 
     const total = await EventModel.findCountByQuery({});
     const totalPages = Math.ceil(total/5);

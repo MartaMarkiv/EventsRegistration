@@ -16,7 +16,8 @@ const EventModel = mongoose.model("Event", eventSchema);
 module.exports = {
   create: (data) => new EventModel(data).save(),
 
-  findByQuery: (query, skip) => EventModel.find(query)
+  findByQuery: (query, sortQuery, skip) => EventModel.find(query)
+    .sort(sortQuery)
     .skip(skip)
     .limit(5)
     .lean(),

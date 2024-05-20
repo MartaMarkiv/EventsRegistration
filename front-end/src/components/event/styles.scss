@@ -5,10 +5,22 @@
   border: 1px solid $border-color;
   border-radius: 10px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .title {
     font-weight: 600;
     margin-bottom: 15px;
+  }
+
+  .organizer {
+    margin-bottom: 10px;
+
+    span:first-child {
+      font-weight: 600;
+      word-wrap: break-word;
+    }
   }
 }
 

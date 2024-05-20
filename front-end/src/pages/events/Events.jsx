@@ -1,21 +1,41 @@
+/* eslint-disable no-unused-vars */
 import { useCallback, useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Event from "../../components/event/Event";
 import Pagination from "../../components/pagination/Pagination";
+import SortForm from "../../components/sortForm/SortForm";
 import api from "../../api/api";
 import "./styles.scss";
 
 function Events() {
   const [eventsList, setEventsList] = useState([]);
+  const [error, setError] = useState(false);
+
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const [error, setError] = useState(false);
+
+  const [sortingOrder, setSortingOrder] = useState(1);
+  const [sortingParam, setSortingParam] = useState("title");
 
   const changeCurrentPage = (page) => setCurrentPage(page);
 
+  const changeSortingOrder = (index) => {
+    setSortingOrder(index);
+  };
+
+  const changeSortingParametr = (event) => {
+    setSortingParam(event.target.value);
+  };
+
   const fetchData = useCallback(async () => {
-    console.log("currentPage before fetch: ", currentPage);
-    await api.get("event", { params: { page: currentPage } })
+    await api.get("event", {
+      params: {
+        page: currentPage,
+        sort: {
+          sortKey: sortingParam,
+          sortValue: sortingOrder
+        }
+      }})
       .then(resp => {
         const { list, total } = resp.data;
         setEventsList(list);
@@ -25,7 +45,7 @@ function Events() {
       .catch(err => {
         setError(true);
       });
-  }, []);
+  }, [currentPage, sortingParam, sortingOrder]);
 
   useEffect(() => {
     fetchData();
@@ -33,18 +53,27 @@ function Events() {
 
   return(<section>
     <Header title="Events" />
-    <div className="events-list-wrapper">
-      {
-        error ? <div>Error</div>:
-        eventsList.map(item => <Event
-          key={item._id}
-          description={item.description}
-          title={item.title}
-          id={item._id}
-        />)
-      }
-    </div>
-    <Pagination current={currentPage} total={totalPages} changePage={changeCurrentPage}/>
+    { error ? <div>Error</div>:
+      <>
+        <SortForm
+        changeOrder={changeSortingOrder}
+        changeSorting={changeSortingParametr}
+        sortValue={sortingParam}
+      />
+      <div className="events-list-wrapper">
+        {
+          eventsList.map(item => <Event
+            key={item._id}
+            description={item.description}
+            title={item.title}
+            id={item._id}
+            organizer={item.organizer}
+          />)
+        }
+      </div>
+      <Pagination current={currentPage} total={totalPages} changePage={changeCurrentPage}/></>
+    }
+    
   </section>);
 }
 
