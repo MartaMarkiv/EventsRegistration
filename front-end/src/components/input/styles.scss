@@ -1,0 +1,43 @@
+@import "../../variables";
+
+.input-wrapper {
+  margin-bottom: 15px;
+  position: relative;
+  padding-bottom: 20px;
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"] {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid $border-color;
+    border-radius: 10px;
+    min-width: 300px;
+
+    &:focus {
+      border: 1px solid $border-color;
+      outline: none;
+    }
+  }
+
+  input[type="date"] {
+    cursor: pointer;
+  }
+
+  label {
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .error-input {
+    font-size: 13px;
+    color: $error-color;
+    position: absolute;
+    bottom: 0;
+  }
+}
