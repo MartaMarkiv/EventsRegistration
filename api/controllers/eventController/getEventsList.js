@@ -8,7 +8,7 @@ module.exports = async(req, res) => {
     let sortQuery = {};
     sortQuery[sortKey] = Number(sortValue);
 
-    const eventsList = await EventModel.findByQuery({}, sortQuery, (skip + 1) * config.countPerPage); // "countPerPage" items per page
+    const eventsList = await EventModel.findByQuery({}, sortQuery, (Number(skip) + 1) * config.countPerPage); // "countPerPage" items per page
 
     const total = await EventModel.findCountByQuery({});
     const totalPages = Math.ceil(total/config.countPerPage);
