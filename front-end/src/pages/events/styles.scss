@@ -1,6 +1,15 @@
-.events-list-wrapper {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+.events-page {
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .events-list-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    max-height: 100%;
+    margin-bottom: 40px;
+    overflow-y: auto;
+  }
 }

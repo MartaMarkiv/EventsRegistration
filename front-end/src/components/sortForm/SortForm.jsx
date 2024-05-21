@@ -1,6 +1,6 @@
 import "./styles.scss";
 
-function SortForm({changeSorting, changeOrder, sortValue}) {
+function SortForm({changeSorting, changeOrder, sortValue, orderValue}) {
   return(<div className="sorting-form">
     <div className="divider">
       <span>Sort by: </span>
@@ -14,8 +14,18 @@ function SortForm({changeSorting, changeOrder, sortValue}) {
     </div>
     <div className="divider">
       <span>Order: </span>
-      <button onClick={() => changeOrder(-1)}>&#8593;</button>
-      <button onClick={() => changeOrder(1)}>&#8595;</button>
+      <button
+        className={orderValue === -1 ? "active" : ""}
+        onClick={() => changeOrder(-1)}
+      >
+        &#8593;
+      </button>
+      <button
+        className={orderValue === 1 ? "active" : ""}
+        onClick={() => changeOrder(1)}
+      >
+        &#8595;
+      </button>
     </div>
   </div>);
 }

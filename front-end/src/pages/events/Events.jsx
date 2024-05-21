@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import Header from "../../components/header/Header";
 import Event from "../../components/event/Event";
-import Pagination from "../../components/pagination/Pagination";
 import SortForm from "../../components/sortForm/SortForm";
 import api from "../../api/api";
 import "./styles.scss";
@@ -17,7 +15,17 @@ function Events() {
   const [sortingOrder, setSortingOrder] = useState(1);
   const [sortingParam, setSortingParam] = useState("title");
 
-  const changeCurrentPage = (page) => setCurrentPage(page);
+  const listEventsRef = useRef();
+
+  const scrollListContainer = () => {
+    if (listEventsRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = listEventsRef.current;
+      if (scrollTop + clientHeight === scrollHeight) {
+        if (currentPage !== 0 && currentPage >= totalPages) return;
+        setCurrentPage(currentPage + 1);
+      }
+    }
+  };
 
   const changeSortingOrder = (index) => {
     setSortingOrder(index);
@@ -45,22 +53,27 @@ function Events() {
       .catch(err => {
         setError(true);
       });
-  }, [currentPage, sortingParam, sortingOrder]);
+  }, [currentPage, sortingOrder, sortingParam]);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
-  return(<section>
+  return(<section className="events-page">
     <Header title="Events" />
     { error ? <div>Error</div>:
       <>
         <SortForm
-        changeOrder={changeSortingOrder}
-        changeSorting={changeSortingParametr}
-        sortValue={sortingParam}
+          changeOrder={changeSortingOrder}
+          changeSorting={changeSortingParametr}
+          sortValue={sortingParam}
+          orderValue={sortingOrder}
       />
-      <div className="events-list-wrapper">
+      <div
+        className="events-list-wrapper"
+        onScroll={scrollListContainer}
+        ref={listEventsRef}
+      >
         {
           eventsList.map(item => <Event
             key={item._id}
@@ -71,9 +84,8 @@ function Events() {
           />)
         }
       </div>
-      <Pagination current={currentPage} total={totalPages} changePage={changeCurrentPage}/></>
+    </>
     }
-    
   </section>);
 }
 

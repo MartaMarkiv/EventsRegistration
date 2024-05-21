@@ -1,4 +1,5 @@
 const EventModel = require("../../models/Event");
+const config = require("../../config");
 
 module.exports = async(req, res) => {
   try {
@@ -6,11 +7,11 @@ module.exports = async(req, res) => {
 
     let sortQuery = {};
     sortQuery[sortKey] = Number(sortValue);
-    
-    const eventsList = await EventModel.findByQuery({}, sortQuery, skip*5); //10 items per page
+
+    const eventsList = await EventModel.findByQuery({}, sortQuery, (skip + 1) * config.countPerPage); // "countPerPage" items per page
 
     const total = await EventModel.findCountByQuery({});
-    const totalPages = Math.ceil(total/5);
+    const totalPages = Math.ceil(total/config.countPerPage);
 
     return res.status(200).json({list: eventsList, total: totalPages});
   } catch (error) {

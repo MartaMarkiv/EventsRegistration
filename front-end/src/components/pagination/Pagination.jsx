@@ -2,10 +2,7 @@ import "./styles.scss";
 
 function Pagination({total, current, changePage}) {
 
-  const paginationMarkers = total <= 5 ?
-    [...new Array(total)].map((item, index)=> index) :
-    [...new Array(3)].map((item, index)=> index);
-  if (total > 5) { paginationMarkers.push("...", total - 1); }
+  const paginationMarkers = [...new Array(total)].map((item, index)=> index);
 
   const changeCurrent = (index) => {
     changePage(current + index);

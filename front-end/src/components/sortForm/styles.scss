@@ -31,5 +31,10 @@
     color: $title-color;
     padding: 0 2px;
     margin-right: 5px;
+    border-radius: 0;
+
+    &.active {
+      border-bottom: 1px solid $border-color;
+    }
   }
 }

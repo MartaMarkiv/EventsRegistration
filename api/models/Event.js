@@ -1,5 +1,6 @@
 const mongoose = require("../lib/mongoose");
 const Schema = mongoose.Schema;
+const config = require("../config");
 
 const eventSchema = Schema(
   {
@@ -18,8 +19,14 @@ module.exports = {
 
   findByQuery: (query, sortQuery, skip) => EventModel.find(query)
     .sort(sortQuery)
-    .skip(skip)
-    .limit(5)
+    .skip(0)
+    .limit(skip)
+    .lean(),
+
+  getSorted: (sortQuery, limitItems) => EventModel.find({})
+    .skip(0)
+    .limit(limitItems)
+    .sort(sortQuery)
     .lean(),
 
   findOneByQuery: (query) => EventModel.findOne(query).lean(),
