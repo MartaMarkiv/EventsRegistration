@@ -1,5 +1,27 @@
-.participants-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+.participants-page {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 100%;
+
+  .participants-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .recharts-responsive-container {
+    min-height: 300px;
+  }
+
+  .statistics {
+    margin: 30px 0;
+
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 20px 0;
+      text-align: center;
+    }
+  }
 }
