@@ -2,14 +2,14 @@ const axios = require("axios");
 
 const options = {
   method: "GET",
-  url: "https://calendars.p.rapidapi.com/ical_fetch",
+  url: process.env.EVENT_URL,
   params: {
     c: "caveat",
     json: "true"
   },
   headers: {
-    "X-RapidAPI-Key": "7351465bcbmsh0d0ae45bd533675p1082ffjsn3d52d5a5f6c9",
-    "X-RapidAPI-Host": "calendars.p.rapidapi.com"
+    "X-RapidAPI-Key": process.env.EVENT_API_KEY,
+    "X-RapidAPI-Host": process.env.EVENT_API_HOST
   }
 };
 
