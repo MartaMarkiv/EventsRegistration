@@ -10,8 +10,7 @@
 
         cd <YOUR_WORKING_DIRECTORY>
         git clone https://github.com/MartaMarkiv/EventsRegistration.git
-        <YOUR_PROJECT_NAME>
-        cd <YOUR_PROJECT_NAME>
+        cd EventsRegistration
 
 ## **2. Development setup**
 
