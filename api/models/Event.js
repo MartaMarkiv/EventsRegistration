@@ -32,4 +32,6 @@ module.exports = {
   findOneByQuery: (query) => EventModel.findOne(query).lean(),
 
   findCountByQuery: (query) => EventModel.countDocuments(query),
+
+  insertList: list => EventModel.insertMany(list)
 };
