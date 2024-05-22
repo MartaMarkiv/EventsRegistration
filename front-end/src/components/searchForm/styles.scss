@@ -25,3 +25,25 @@
     }
   }
 }
+
+@media(max-width: 590px) {
+  .search-form {
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: none;
+
+    .inputs-wrapper {
+      width: 100%;
+      flex-direction: column;
+      align-content: flex-start;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+
+      input {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

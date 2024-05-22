@@ -11,5 +11,12 @@
     max-height: 100%;
     margin-bottom: 40px;
     overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 400px) {
+  .events-page .events-list-wrapper {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 }

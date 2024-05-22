@@ -13,7 +13,7 @@ function Registration() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [birthDate, setBirthDate] = useState("");
-  const [source, setSource] = useState("social");
+  const [source, setSource] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
@@ -87,7 +87,6 @@ function Registration() {
     setEmail("");
     setFullName("");
     setBirthDate("");
-    setSource("");
   };
 
   const disableTrigger = submitting || emailError || nameError || birthDateError || !email || !fullName || !birthDate;
