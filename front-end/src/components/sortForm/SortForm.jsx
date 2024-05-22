@@ -7,7 +7,7 @@ function SortForm({changeSorting, changeOrder, sortValue, orderValue}) {
       <span>
         <select name="sorting" onChange={changeSorting} value={sortValue}>
           <option value="title">Title</option>
-          <option value="date">Event date</option>
+          <option value="eventDate">Event date</option>
           <option value="organizer">Organizer</option>
         </select>
       </span>
@@ -15,14 +15,14 @@ function SortForm({changeSorting, changeOrder, sortValue, orderValue}) {
     <div className="divider">
       <span>Order: </span>
       <button
-        className={orderValue === -1 ? "active" : ""}
-        onClick={() => changeOrder(-1)}
+        className={orderValue === 1 ? "active" : ""}
+        onClick={() => changeOrder(1)}
       >
         &#8593;
       </button>
       <button
-        className={orderValue === 1 ? "active" : ""}
-        onClick={() => changeOrder(1)}
+        className={orderValue === -1 ? "active" : ""}
+        onClick={() => changeOrder(-1)}
       >
         &#8595;
       </button>

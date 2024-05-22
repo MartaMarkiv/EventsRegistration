@@ -22,6 +22,20 @@
       word-wrap: break-word;
     }
   }
+
+  .date {
+    margin-top: 10px;
+
+    span {
+      &:first-child {
+        font-weight: 600;
+      }
+
+      &:last-child {
+       font-style: italic;
+      }
+    }
+  }
 }
 
 .actions-wrapper {

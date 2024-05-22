@@ -81,6 +81,7 @@ function Events() {
             title={item.title}
             id={item._id}
             organizer={item.organizer}
+            date={item.eventDate}
           />)
         }
       </div>

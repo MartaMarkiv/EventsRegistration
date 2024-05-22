@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./styles.scss";
 import { REGISTRATION_ROUTE, PARTICIPANTS_ROUTE } from "../../routes/routes";
 
-function Event({title, description, id, organizer}) {
+function Event({title, description, id, organizer, date}) {
   return(<div className="event">
     <div>
       <div className="title">{title}</div>
@@ -11,6 +11,7 @@ function Event({title, description, id, organizer}) {
         <span>{organizer}</span>
       </div>
       <div>{description}</div>
+      <div className="date"><span>When: </span><span>{date}</span></div>
     </div>
     <div className="actions-wrapper">
       <Link className="link" to={`${REGISTRATION_ROUTE}/${id}`}>Register</Link>
