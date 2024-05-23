@@ -53,3 +53,6 @@ This project is using technologies:
     - Express
     - Mongo DB
     - Mongoose
+   
+## **4. Demo
+https://events-registration-eta.vercel.app/
